@@ -1,5 +1,5 @@
 import express from 'express'
-import {getdata,getid,createrow,result,getval,insertfeatureval,Bresult,user,getBuilding_userdata,getbuidlingfeature,userdata,E_result} from './database.js'
+import {getdata,getid,createrow,result,getval,insertfeatureval,Bresult,user,getBuilding_userdata,getbuidlingfeature,userdata,E_result,signup_User} from './database.js'
 const app = express();
 const port = 3000;
 import cors from 'cors';
@@ -19,9 +19,14 @@ app.get('/getid/:id',async(req,res)=>{
     const result= await getid(id)
     res.send(result);
 })
-//for user insert values
+//for user values check in database
 app.post('/user',async(req,res)=>{
     const result=await user(req.body.user_name,req.body.passcode)
+    res.send(result);
+})
+app.post('/user_create',async(req,res)=>{
+    const result=await signup_User(req.body.username,req.body.password,req.body.email)
+    console.log(result);
     res.send(result);
 })
 //userdata

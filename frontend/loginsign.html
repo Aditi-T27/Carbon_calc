@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loginsignup.css">
+    <title>Document</title>
+</head>
+<body>
+    <br><br>
+    <div class="cont">
+      <div class="form sign-in">
+        <h2>Welcome</h2>
+          <label>
+              <span>Username</span>
+              <input type="text" id="username" name="username" required />
+          </label>
+          <label>
+              <span>Password</span>
+              <input type="password" id="password" name="password" required />
+          </label>
+              <p class="forgot-pass" style="color: gray;">Forgot password?</p>
+              <button type="button" class="submit" id="sign-in">Sign In</button>
+      </div>
+      <div class="sub-cont">
+          <div class="img">
+                <div class="img__text m--up">
+                    <h3>Don't have an account? Sign Up</h3>
+                </div>
+                <div class="img__text m--in">
+                    <h3>Already have an account? Login In</h3>
+                </div>
+                <div class="img__btn">
+                    <span class="m--up">Sign Up</span>
+                    <span class="m--in">Sign In</span>
+                </div>
+            </div>
+            <div class="form sign-up">
+                <h2>Create your Account</h2>
+                <label>
+                    <span>Name</span>
+                    <input type="text" id="new_username" name="new_username" required/>
+                </label>
+                <label>
+                    <span>Email</span>
+                    <input type="email" id="new_email" name="new_email" required />
+                </label>
+                <label>
+                    <span >Password</span>
+                    <input type="password"  id="new_password" name="new_password" required/>
+                </label>
+                <button type="button" class="submit" id="sign-up">Sign Up</button>
+            </div>
+        </div>
+    </div>
+    <div id="signup-modal">
+        <div class="modal-content">
+          <h2>Welcome Aboard!</h2>
+          <p>We're glad to have you join the mission of reducing carbon footprints.</p>
+          <button id="continue-btn">Continue</button>
+        </div>
+      </div>
+    <script>
+        document.querySelector('.img__btn').addEventListener('click', function() {
+            document.querySelector('.cont').classList.toggle('s--signup');
+        });
+
+        //for user login
+username=document.getElementById('username');
+password=document.getElementById('password');
+
+
+user_btn1=document.getElementById('sign-in');
+user_btn2=document.getElementById('sign-up');
+
+//api call
+// user_btn1.addEventListener("click", () => {
+
+// const myHeaders = new Headers();
+// myHeaders.append("Content-Type", "application/json");
+// if (!username.value || !password.value ) {
+//     alert("All fields are mandatory");
+//     return; // Stop further execution
+// }
+// //{for sign in checking user presence}
+// const raw = JSON.stringify({
+//   "user_name": username.value,
+//   "passcode": password.value
+// });
+
+ 
+// const requestOptions = {
+//   method: "POST",
+//   headers: myHeaders,
+//   body: raw,
+//   redirect: "follow"
+// };
+
+// fetch("http://localhost:3000/user", requestOptions)
+//   .then((response) => response.text())
+//   .then((result) => console.log(result)
+
+// )
+//   .catch((error) => console.error(error));
+//   window.location.href = `frontpage.html?username=${encodeURIComponent(username.value)}`;
+
+//   });
+  
+user_btn1.addEventListener("click", () => {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  if (!username.value || !password.value) {
+    alert("All fields are mandatory");
+    return; // Stop further execution
+  }
+
+  const raw = JSON.stringify({
+    "user_name": username.value,
+    "passcode": password.value
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+  };
+
+  console.log("Starting fetch request...");
+
+  fetch("http://localhost:3000/user", requestOptions)
+    .then((response) => {
+      console.log("Response received:", response);
+      if (!response.ok) {
+        throw new Error(`Login cannot be approved. Server returned status: ${response.status}`);
+      }
+      return response.json(); // Assuming the response is JSON
+    })
+    .then((result) => {
+      console.log("Result:", result);
+      window.location.href = `frontpage.html?username=${encodeURIComponent(username.value)}`;
+    })
+    .catch((error) => {
+      console.error("Error occurred:", error);
+      alert(error.message); // Show the error message to the user
+    });
+});
+
+//============================================================================================
+// Sign up adding user to database
+ const new_username = document.getElementById("new_username");
+    const new_password = document.getElementById("new_password");
+    const new_email = document.getElementById("new_email");
+    const signupModal = document.getElementById("signup-modal");
+    const continueBtn = document.getElementById("continue-btn");
+
+    user_btn2.addEventListener("click", () => {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const raw = JSON.stringify({
+        username: new_username.value,
+        password: new_password.value,
+        email: new_email.value,
+      });
+
+      if (!username || !password || !email) {
+    alert("All fields are mandatory");
+    return; // Stop further execution
+  }
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+  
+      fetch("http://localhost:3000/user_create", requestOptions)
+        .then((response) => {
+          if (response.ok) {
+            // Show the modal on successful sign-up
+            signupModal.style.display = "flex";
+          } else {
+            console.error("Sign-up failed");
+          }
+          return response.text();
+        })
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+  
+    });
+
+    // Redirect to the main page when clicking 'Continue'
+    continueBtn.addEventListener("click", () => {
+      window.location.href = `frontpage.html?username=${encodeURIComponent(
+        new_username.value
+      )}`;
+    });
+
+    // Optional: Close modal when clicking outside the modal content
+    signupModal.addEventListener("click", (event) => {
+      if (event.target === signupModal) {
+        signupModal.style.display = "none";
+      }
+    });
+
+    </script>
+</body>
+</html>

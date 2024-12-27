@@ -53,7 +53,9 @@ export async function createrow(building_name,size_sqft,location,user){
 //  return result
 // }
 
+ //sign-in function
 export async function user(user_name, passcode) {
+   
     try {
         // Check if the username already exists
         const checkQuery = `SELECT COUNT(*) AS count FROM user WHERE username = ?`;
@@ -61,20 +63,30 @@ export async function user(user_name, passcode) {
         
         if (rows[0].count > 0) {
             // Username already exists
-            return { success: false, message: "Username already exists" };
+            return { success: true, message: "Username exists" };
         }
-
-        // If the username doesn't exist, proceed with insertion
-        const insertQuery = `INSERT INTO user (username, passcode) VALUES (?, ?)`;
-        const [result] = await pool.query(insertQuery, [user_name, passcode]);
-
-        return { success: true, message: "User created successfully", result };
+        else{
+           return {success:false,message:"Please Sign Up"}
+        }
     } catch (error) {
         // Handle errors (e.g., database connection issues)
         console.error("Database error:", error);
         return { success: false, message: "An error occurred", error };
     }
 }
+//sign-up function
+export async function signup_User(username,password,email){
+    try{
+    const insertQuery = `INSERT INTO user (username,passcode,email) VALUES (?, ?, ?)`;
+    const [result] = await pool.query(insertQuery, [username, password,email]);
+    return { success: true, message: "User created successfully", result };
+    }
+    catch(error){
+        console.error("Database error:", error);
+        return { success: false, message: "An error occurred", error };
+    }
+}
+
 export async function getBuilding_userdata(username){
         try {
             // Query to fetch building names associated with the username
