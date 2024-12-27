@@ -9,7 +9,7 @@ val8=document.getElementById('feature_value8');
 val9=document.getElementById('feature_value9');
 val10=document.getElementById('feature_value10');
 
-Bname=document.getElementById('building_name');
+// Bname=document.getElementById('building_name');
 //Submit Buttons
 s1=document.getElementById('submit1')
 s2=document.getElementById('submit2')
@@ -26,6 +26,12 @@ s10=document.getElementById('submit10')
 // The result part
 calculate=document.getElementById('calculate')
 Result=document.getElementById('result');
+
+//Receiving Building_name via Query Parameter
+const params = new URLSearchParams(window.location.search);
+const Bname = params.get('Bname'); // Use 'name' consistently
+alert(Bname);
+
 // Get the label element by its 'data-name' attribute
 const label1 = document.querySelector('label[data-name="Cement"]');
 // Get the value of the 'data-name' attribute
@@ -78,7 +84,7 @@ alert(label_N9);  // Output: "b_name"
 // s1.addEventListener("click",()=>{
 //   alert(label);
 //     m_val=val.value;
-//     m_name=Bname.value;
+//     m_name=Bname;
    
 //     const myHeaders = new Headers();
 // myHeaders.append("Content-Type", "application/json");
@@ -105,9 +111,8 @@ alert(label_N9);  // Output: "b_name"
 
 s1.addEventListener("click",()=>{
     m_val=val1.value;
-    m_name=Bname.value;
+    m_name=Bname;
     const label_N1 = label1.getAttribute('data-name');
-
 
     const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -135,7 +140,7 @@ fetch("http://localhost:3000/insertfeature", requestOptions)
 
 s2.addEventListener("click",()=>{
     m_val=val2.value;
-    m_name=Bname.value;
+    m_name=Bname;
     const label_N1 = label1.getAttribute('data-name');
 
 
@@ -165,7 +170,7 @@ fetch("http://localhost:3000/insertfeature", requestOptions)
 
 s3.addEventListener("click",()=>{
     m_val=val3.value;
-    m_name=Bname.value;
+    m_name=Bname;
     const label_N1 = label1.getAttribute('data-name');
 
 
@@ -195,7 +200,7 @@ fetch("http://localhost:3000/insertfeature", requestOptions)
 
 s4.addEventListener("click",()=>{
     m_val=val4.value;
-    m_name=Bname.value;
+    m_name=Bname;
     const label_N1 = label1.getAttribute('data-name');
 
 
@@ -225,7 +230,7 @@ fetch("http://localhost:3000/insertfeature", requestOptions)
 
 s5.addEventListener("click",()=>{
     m_val=val5.value;
-    m_name=Bname.value;
+    m_name=Bname;
     const label_N1 = label1.getAttribute('data-name');
 
 
@@ -255,7 +260,7 @@ fetch("http://localhost:3000/insertfeature", requestOptions)
 
 s6.addEventListener("click",()=>{
     m_val=val6.value;
-    m_name=Bname.value;
+    m_name=Bname;
     const label_N1 = label1.getAttribute('data-name');
 
 
@@ -285,7 +290,7 @@ fetch("http://localhost:3000/insertfeature", requestOptions)
 
 s7.addEventListener("click",()=>{
     m_val=val7.value;
-    m_name=Bname.value;
+    m_name=Bname;
     const label_N1 = label1.getAttribute('data-name');
 
 
@@ -315,7 +320,7 @@ fetch("http://localhost:3000/insertfeature", requestOptions)
 
 s8.addEventListener("click",()=>{
     m_val=val8.value;
-    m_name=Bname.value;
+    m_name=Bname;
     const label_N1 = label1.getAttribute('data-name');
 
 
@@ -345,7 +350,7 @@ fetch("http://localhost:3000/insertfeature", requestOptions)
 
 s9.addEventListener("click",()=>{
     m_val=val9.value;
-    m_name=Bname.value;
+    m_name=Bname;
     const label_N1 = label1.getAttribute('data-name');
 
 
@@ -375,7 +380,7 @@ fetch("http://localhost:3000/insertfeature", requestOptions)
 
 s10.addEventListener("click",()=>{
     m_val=val10.value;
-    m_name=Bname.value;
+    m_name=Bname;
     console.log(m_name);
 
 
@@ -405,13 +410,13 @@ fetch("http://localhost:3000/insertfeature", requestOptions)
 
 
 // calculate.addEventListener("click",()=>{
-//   m_name=Bname.value;
+//   m_name=Bname;
      
 // const myHeaders = new Headers();
 // myHeaders.append("Content-Type", "application/json");
 
 // const raw = JSON.stringify({
-//   "name": Bname.value
+//   "name": Bname
 // });
 // const requestOptions = {
 //   method: "GET",
@@ -428,7 +433,7 @@ fetch("http://localhost:3000/insertfeature", requestOptions)
 
 
 calculate.addEventListener("click", () => {
-  const m_name = Bname.value; // Get the input value
+  const m_name = Bname; // Get the input value
 
   if (!m_name) {
     alert("Please provide a valid name!");
@@ -448,17 +453,61 @@ calculate.addEventListener("click", () => {
   };
 
   // Fetch the data
-  fetch(url, requestOptions)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
-      return response.text(); // or response.json() if expecting JSON
-    })
-    .then((result) => {
-      console.log("From Fetch:", result);
-      // Optionally display the result in the UI
-      document.getElementById('result').innerText = result;
-    })
-    .catch((error) => console.error("Fetch Error:", error));
+//   fetch(url, requestOptions)
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error(`Error: ${response.statusText}`);
+//       }
+//       return response.text(); // or response.json() if expecting JSON
+//     })
+//     .then((result) => {
+//       console.log("From Fetch:", result);
+//       // Optionally display the result in the UI
+//       document.getElementById('result').innerText = result;
+//     })
+//     .catch((error) => console.error("Fetch Error:", error));
+// });
+
+fetch(url, requestOptions)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    return response.json(); // Parse response as JSON
+  })
+  .then((result) => {
+    console.log("From Fetch:", result);
+    // Extract total_emission value
+    const totalEmission = result[0]?.total_emission || "N/A";
+    // Format and display the result
+    document.getElementById('result').innerText = `Total Emission: ${totalEmission}`;
+
+
+    //fetch code
+    
+const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+console.log("inside fetch")
+const raw = JSON.stringify({
+  "Bname": Bname,
+  "emission_result": totalEmission
 });
+
+const reqopt = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/result", reqopt)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+
+
+
+  })
+  .catch((error) => console.error("Fetch Error:", error));
+})

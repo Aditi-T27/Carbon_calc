@@ -1,0 +1,222 @@
+/* .container{
+   
+    display:flex;
+    width:100%;
+}
+.first{
+    
+    width:30%;
+    border-top:3px solid #009879;
+    border-bottom:3px solid #009879;
+    border-left:3px solid #009879;
+    height: 97vh;
+}
+.second{
+   
+    border:3px,solid #009879;
+    width:70%;;
+} */
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 97vh;
+    border: 3px solid #009879; /* Add a border to the container */
+    border-radius: 10px; /* Rounded corners for the overall container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #f5f5f5; /* Light background for contrast */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.first {
+    width: 30%;
+    padding: 15px; /* Padding for better spacing */
+    box-sizing: border-box;
+    background: white; /* Card-like background */
+    border-radius: 10px; /* Rounded corners for a card effect */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Prominent shadow for card effect */
+    margin: 10px; /* Add spacing between the card and the container edges */
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+    justify-content: space-between; /* Spread content for balance */
+}
+
+.second {
+    width: 70%;
+    padding: 20px; /* Add padding for better content spacing */
+    box-sizing: border-box;
+    background-color: #f9f9f9; /* Subtle background to differentiate */
+}
+
+img{
+    margin:16px 67px;
+}
+.image{
+    position:relative;
+}
+.badge{
+    position:absolute;
+      top: 80%; /* Position text vertically at the center */
+      left: 50%; /* Position text horizontally at the center */
+      transform: translate(-50%, -50%); /* Center the text exactly */
+      color: #3e6e8e;
+      font-size: 22px;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Optional: Add shadow for better readability */
+      font-family: "Bebas Neue", serif;
+      font-weight: 700;
+      font-style: normal;
+}
+.user_details{
+    font-size: 19px;
+    padding: 5px 15px;
+    border-radius: 9px;
+    color: white;
+    font-family: monospace;
+    /* background-color: #357bab; */
+    background: linear-gradient(to right, #009879, #45a049);;
+    border-color: white;
+}
+.user_details:hover{
+    background-color: #b5d2e7;
+    border-color:#357bab ;
+}
+.user-header{
+    text-align: center;
+    font-size: 28px;
+    font-family: fantasy;
+    /* color: #578fb6; */
+    color:#009879;
+}
+/* .search-header{
+    font-size: 36px;
+    padding: 3px;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 8px;
+    color: white;
+    background-color: #357bab;
+    font-family: fantasy;
+    border: 2px solid #103954;
+} */
+/* Card styling */
+.user-details-card {
+    background: #f5f5f5; /* Soft light gray */
+    border: 1px solid #4CAF50; /* Green border */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    width: 300px;
+    margin: 20px auto; /* Center the card */
+    text-align: left;
+}
+
+/* Header styling */
+.user-details-header {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Label and info styling */
+.label {
+    font-weight: 600;
+    color: #333;
+}
+
+.user-info p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Hover effect for interactivity */
+.user-details-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    transition: 0.3s ease;
+}
+
+
+.search-header{
+  background: linear-gradient(to right, #009879, #45a049); /* Matching green gradient */
+  color: white; /* White text for contrast */
+  font-size: 28px; /* Larger font size */
+  font-weight: 200; /* Bold text */
+  text-align: center; /* Center the text */
+  padding: 15px 0; /* Add padding for better spacing */
+  border-radius: 10px; /* Rounded corners */
+  margin: 20px auto; /* Add some space around */
+  width: 80%; /* Adjust the width */
+  font-family: fantasy;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.building-button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+.building-button:hover {
+  background-color: #45a049;
+}
+
+/* Style for the table */
+  .styled-table {
+    margin: 20px auto; /* Centers the table */
+    border-collapse: collapse;
+    font-size: 11px;
+    font-family: Arial, sans-serif;
+    width: 80%; /* Adjust as needed */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    text-align: left;
+  }
+  
+  .styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  .styled-table th, .styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+  
+  .styled-table tbody tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
+  
+  .styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  /* Center the table container */
+  #table-content {
+    text-align: center;
+  }
+  #row{
+    color:#009879;
+    font-weight: bolder;
+    font-size: 16px;
+    
+  }
+  

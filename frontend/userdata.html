@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="userdata.css
+    ">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100..900&family=Playwrite+ES+Deco:wght@100..400&family=Playwrite+NG+Modern:wght@100..400&display=swap"
+    rel="stylesheet">
+    <title>Document</title>
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="first">
+            <div class="image">
+                <img src="user_img.jpg" alt="image" width="250px">
+                <p class="badge">Eco-Conscious Citizen</p>
+            </div>
+            <!-- <div class="details">
+            <p class="user-header">User Details</p> 
+             <p><span ><button class="user_details">Name</button>: <span class="name">Aditi</span></span></p><br>
+             <p><span ><button class="user_details">Email ID</button>: <span class="email">aditi@gmail.com</span></span></p><br>
+             <p><span ><button class="user_details">Passcode</button>: <span class="name">12345</span></span></p>
+            </div> -->
+            <div class="user-details-card">
+                <h2 class="user-details-header">User Details</h2>
+                <div class="user-info">
+                    <p><span ><button class="user_details">Name</button>: <span id="name">Aditi</span></span></p><br>
+                    <p><span ><button class="user_details">Email ID</button>: <span id="email">aditi@gmail.com</span></span></p><br>
+                    <p><span ><button class="user_details">Passcode</button>: <span id="passcode">12345</span></span></p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="second">
+               <p class="search-header">Past Search</p>
+                    
+        <div>
+            <div id="button-container"> </div>
+            <div id="table-content"></div>
+            <div id="total_emission"></div>
+        </div>
+
+        </div>
+    </div>
+    <script>
+
+      username=document.getElementById('name');
+      email_id=document.getElementById('email')
+      passcode_id=document.getElementById('passcode');
+
+const params = new URLSearchParams(window.location.search);
+const name = params.get('name');
+username.innerText=name;
+
+const reqOpt = {
+  method: "GET",
+  redirect: "follow"
+};
+
+fetch(`http://localhost:3000/get_userdata/${name}`, reqOpt)
+  .then((response) => response.json())
+  .then((result) => {
+    console.log('API Response:', result); // Debug the API response
+
+    // Check if the result is a non-empty array
+    if (Array.isArray(result) && result.length > 0) {
+      const { email, passcode } = result[0]; // Access the first object in the array
+
+      // Update DOM elements
+      email_id.innerText = email || 'No Email Provided';
+      passcode_id.textContent = passcode || 'No Passcode Provided';
+    } else {
+      console.error('Unexpected response format or empty array');
+      email_id.innerText = 'No Email Available';
+      passcode_id.textContent = 'No Passcode Available';
+    }
+  })
+  .catch((error) => console.error('Error fetching user data:', error));
+
+
+
+
+//fetch query for email and passcode form db with access through name
+const requestOptions = {
+            method: "GET",
+            redirect: "follow" };
+
+fetch(`http://localhost:3000/userdata/${name}`, requestOptions)
+  .then((response) => response.json()) // Parse the response as JSON
+  .then((result) => {
+    if (result.success && result.buildings && result.buildings.length > 0) {
+      const buttonContainer = document.getElementById('button-container'); // Container for buttons
+      const tableContent = document.getElementById('table-content'); // Container for table
+      buttonContainer.innerHTML = ''; // Clear any existing buttons
+
+      result.buildings.forEach((building) => {
+        const button = document.createElement('button'); // Create a button
+        button.textContent = building; // Set button text to building name
+        button.classList.add('building-button'); // Add class for styling
+
+        // Add a click event listener to fetch data and render a table
+        button.addEventListener('click', () => {
+          const requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+          };
+
+          fetch(`http://localhost:3000/getfeature/${building}`, requestOptions)
+  .then((response) => response.json()) // Parse the JSON response
+  .then((features) => {
+    if (Array.isArray(features) && features.length > 0) {
+      console.log(features);
+      // Create table HTML
+      let tableHTML = `
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Feature Name</th>
+              <th>Feature Value</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      // Add rows for each feature
+      features.forEach((feature) => {
+        tableHTML += `
+          <tr>
+            <td>${feature.feature_name}</td>
+            <td>${feature.feature_value}</td>
+          </tr>
+        `;
+      });
+       tableHTML+= `<tr>
+            <td id="row">Total Carbon Emission </td>
+            <td id="row"> ${features[0].result}</td>
+          </tr>`;
+      tableHTML += `
+          </tbody>
+        </table>
+      `;
+
+      // // Access the result from the first feature
+      // const resultValue = features[0].result; // Get the result value from the first feature
+
+      // Render the table in the container
+      tableContent.innerHTML = tableHTML;
+
+      // // Set the inner text of the total_emission div
+      // document.getElementById('total_emission').innerText = resultValue; // Ensure 'total_emission' is a string
+
+    } else {
+      tableContent.innerHTML = '<p>No features found for this building.</p>';
+    }
+  })
+  .catch((error) => {
+    console.error('Error fetching features:', error);
+    tableContent.innerHTML = '<p>Error loading data. Please try again later.</p>';
+  });
+
+        });
+
+        buttonContainer.appendChild(button); // Append button to container
+      });
+    } else {
+      document.getElementById('table-content').innerText = `No buildings found.`;
+    }
+  })
+  .catch((error) => console.error('Error:', error));
+ </script>
+</body>
+
+</html>

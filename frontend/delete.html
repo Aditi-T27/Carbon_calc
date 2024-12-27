@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Overlapping Image</title>
+  <style>
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 600px; /* Set the size of the container */
+    }
+
+    .image {
+      width: 100%;
+      height: auto;
+    }
+
+    .text {
+      position: absolute;
+      top: 50%; /* Position text vertically at the center */
+      left: 50%; /* Position text horizontally at the center */
+      transform: translate(-50%, -50%); /* Center the text exactly */
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Optional: Add shadow for better readability */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="user_img.jpg" alt="Image" class="image">
+    <div class="text">Your Overlapping Text</div>
+  </div>
+</body>
+</html>
