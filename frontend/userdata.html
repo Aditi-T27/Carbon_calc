@@ -34,6 +34,7 @@
                     <p><span ><button class="user_details">Email ID</button>: <span id="email">aditi@gmail.com</span></span></p><br>
                     <p><span ><button class="user_details">Passcode</button>: <span id="passcode">12345</span></span></p>
                 </div>
+                <button class="user_details" id="update">Update</button>
             </div>
             
         </div>
@@ -127,7 +128,7 @@ fetch(`http://localhost:3000/userdata/${name}`, requestOptions)
           </thead>
           <tbody>
       `;
-
+                 
       // Add rows for each feature
       features.forEach((feature) => {
         tableHTML += `
@@ -163,8 +164,7 @@ fetch(`http://localhost:3000/userdata/${name}`, requestOptions)
     console.error('Error fetching features:', error);
     tableContent.innerHTML = '<p>Error loading data. Please try again later.</p>';
   });
-
-        });
+            });
 
         buttonContainer.appendChild(button); // Append button to container
       });
@@ -173,6 +173,10 @@ fetch(`http://localhost:3000/userdata/${name}`, requestOptions)
     }
   })
   .catch((error) => console.error('Error:', error));
+
+
+  // Update functionality
+
  </script>
 </body>
 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add Details</Details></h1>
+    <div>
+        <label for="b_name" data-name="b_name">Building Name</label>
+        <input type="text" id="b_name" name="b_name" required>
+    </div>
+    <br>
+
+    <div>
+        <label for="house_num" data-name="house_num">House Number</label>
+        <input type="text" id="house_num" name="house_num" required>
+    </div>
+    <br>
+
+    <div>
+        <label for="family_size" data-name="family_size">Family Size</label>
+        <input type="text" id="family_size" name="family_size" required>
+    </div>
+<br>
+    <div>
+        <label for="user" data-name="user">User</label>
+        <input type="text" id="user" name="user" required>
+    </div>
+    <br>
+    
+ 
+    
+   <button id="h_info" class="submit">Submit</button>
+   <script>
+       b_name=document.getElementById('b_name');
+       house_num=document.getElementById('house_num');
+       family_size=document.getElementById('family_size');
+       user=document.getElementById('user');
+       h_info=document.getElementById('h_info');
+
+       h_info.addEventListener("click",()=>{
+        const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "building_name": b_name.value,
+  "house_num": house_num.value,
+  "family_size":family_size.value,
+  "user": user.value
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("http://localhost:3000/house_info_create", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+       })
+   </script>
+</body>
+</html>
