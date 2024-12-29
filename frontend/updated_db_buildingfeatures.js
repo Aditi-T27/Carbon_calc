@@ -480,22 +480,6 @@ calculate.addEventListener("click", () => {
     redirect: "follow",
   };
 
-  // Fetch the data
-//   fetch(url, requestOptions)
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error(`Error: ${response.statusText}`);
-//       }
-//       return response.text(); // or response.json() if expecting JSON
-//     })
-//     .then((result) => {
-//       console.log("From Fetch:", result);
-//       // Optionally display the result in the UI
-//       document.getElementById('result').innerText = result;
-//     })
-//     .catch((error) => console.error("Fetch Error:", error));
-// });
-
 fetch(url, requestOptions)
   .then((response) => {
     if (!response.ok) {
@@ -511,31 +495,27 @@ fetch(url, requestOptions)
     document.getElementById('result').innerText = `Total Emission: ${totalEmission}`;
 
 
-    //fetch code
+    //fetch code for results 
     
-const myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
-
-console.log("inside fetch")
-const raw = JSON.stringify({
-  "Bname": Bname,
-  "emission_result": totalEmission
-});
-
-const reqopt = {
-  method: "POST",
-  headers: myHeaders,
-  body: raw,
-  redirect: "follow"
-};
-
-fetch("http://localhost:3000/result", reqopt)
-  .then((response) => response.text())
-  .then((result) => console.log(result))
-  .catch((error) => console.error(error));
-
-
-
-  })
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    
+    const raw = JSON.stringify({
+      "Bname": Bname,
+      "emission_result":totalEmission
+    });
+    
+    const requestOptions = {
+      method: "PATCH",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+    
+    fetch("http://localhost:3000/updateresult", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+})
   .catch((error) => console.error("Fetch Error:", error));
 })

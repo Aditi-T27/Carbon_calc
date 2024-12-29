@@ -1,5 +1,5 @@
 import express from 'express'
-import {getdata,updatedata,Hresult,update_insert,houseinfo_insertFeature,getid,inserthouseinfo,createrow,result,getval,insertfeatureval,Bresult,user,getBuilding_userdata,getbuidlingfeature,userdata,E_result,signup_User} from './database.js'
+import {getdata,updatedata,Hresult,E_updateresult,update_insert,houseinfo_insertFeature,getid,inserthouseinfo,createrow,result,getval,insertfeatureval,Bresult,user,getBuilding_userdata,getbuidlingfeature,userdata,E_result,signup_User} from './database.js'
 const app = express();
 const port = 3000;
 import cors from 'cors';
@@ -160,6 +160,10 @@ app.get('/getfeature/:Bname',async(req,res)=>{
 // API for result insertion into emission result
 app.post('/result',async(req,res)=>{
     const value=await E_result(req.body.Bname,req.body.emission_result);
+    res.send(value);
+})
+app.patch('/updateresult',cors(),async(req,res)=>{
+    const value=await E_updateresult(req.body.Bname,req.body.emission_result);
     res.send(value);
 })
 app.get('/result',async(req,res)=>{

@@ -155,6 +155,10 @@ fetch(`http://localhost:3000/userdata/${name}`, requestOptions)
 
       // // Set the inner text of the total_emission div
       // document.getElementById('total_emission').innerText = resultValue; // Ensure 'total_emission' is a string
+      update=document.getElementById('update');
+      update.addEventListener("click",()=>{
+         window.location.href = `updated_building_feature.html?User=${name}&Bname=${encodeURIComponent(building)}`
+      })
 
     } else {
       tableContent.innerHTML = '<p>No features found for this building.</p>';

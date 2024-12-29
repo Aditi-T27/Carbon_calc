@@ -173,8 +173,8 @@ WHERE hf.building_name = ?;
 `,[building_name,building_name])
     return result;
  }
-
-//Post method For building Feature Values
+ 
+ //Post method For building Feature Values
 export async function insertfeatureval(building_name,feature_name,feature_val){
  const result=await pool.query(
     `INSERT INTO building_features(building_name,feature_name,feature_value)
@@ -225,6 +225,13 @@ export async function E_result(B_name,result){
         VALUES(?,?)`,[B_name,result]
      )
      return res;
+}
+
+// insert into emission_result
+export async function E_updateresult(Bname,emission_result){
+    const res=await pool.query(`UPDATE result_emission 
+        SET result = ? WHERE building_name = ?` ,[emission_result,Bname])
+    return res;
 }
 
 //for email id and passcode:
