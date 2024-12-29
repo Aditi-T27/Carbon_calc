@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="frontpage.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
-
     <title>Carbon Emission Calculator</title>
 </head>
 
@@ -15,33 +12,24 @@
     <div id="header">
 
     </div>
-    <div id="user">
-        <button id="user-btn">
-            <i class="fa fa-user"></i> User
-        </button>
+    <div id="user"><button id="user-btn">User</button></div>
+    <h2>Carbon Emisson Calculator</h2>
+
+    <p>This project aims to develop a website or application that measures the carbon footprints of buildings by
+        utilizing a comprehensive database. By incorporating custom values for various building types and features—such
+        as flooring and fittings—and considering different climatic zones, we can provide accurate emissions
+        assessments. This initiative emphasizes ecological conservation, promoting sustainable practices in construction
+        and design. By facilitating access to this valuable data, we hope to enhance awareness and encourage efforts to
+        reduce carbon footprints, ultimately contributing to natural protection and increasing the project's potential
+        for recognition as a leading solution in environmental sustainability.</p>
+
+    <div class="button-container">
+        <!-- <button><a href="loginsign.html">Calculate Building Emission</a></button> -->
+        <button id="B_info">Calculate Building Emission</button>
+        <button><a href="loginsign.html" >Calculate Household Emission</a></button>
     </div>
     
-    <div class="container">
-        <div class="image-container"></div>
-        <div class="content">
-            <h2>Carbon Emission Calculator</h2>
-            <p>
-                This project aims to develop a website or application that measures the carbon footprints of buildings by
-                utilizing a comprehensive and dynamic database. The platform will consider custom values for various
-                building types, features—such as flooring, fittings, and construction materials—and account for diverse
-                climatic zones to deliver accurate emissions assessments. By emphasizing ecological conservation, this
-                initiative promotes sustainable practices in construction and design while fostering awareness about the
-                environmental impacts of different choices.
-            </p>
-
-            <div class="button-container">
-                <!-- <button><a href="loginsign.html">Calculate Building Emission</a></button> -->
-                <button id="B_info">Calculate Building Emission</button>
-                <button><a href="loginsign.html" >Calculate Household Emission</a></button>
-            </div>
-        </div>
-    </div>
-<script>
+    <script>
 
   
 const params = new URLSearchParams(window.location.search);
@@ -72,70 +60,3 @@ const params = new URLSearchParams(window.location.search);
 </body>
 
 </html>
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="frontpage.css">
-    <title>Carbon Emission Calculator</title>
-</head>
-
-<body>
-    <div id="header">
-
-    </div>
-    <div id="user"><button id="user-btn">User</button></div>
-    <h2>Carbon Emisson Calculator</h2>
-
-    <p>This project aims to develop a website or application that measures the carbon footprints of buildings by
-        utilizing a comprehensive database. By incorporating custom values for various building types and features—such
-        as flooring and fittings—and considering different climatic zones, we can provide accurate emissions
-        assessments. This initiative emphasizes ecological conservation, promoting sustainable practices in construction
-        and design. By facilitating access to this valuable data, we hope to enhance awareness and encourage efforts to
-        reduce carbon footprints, ultimately contributing to natural protection and increasing the project's potential
-        for recognition as a leading solution in environmental sustainability.</p>
-
-    <div class="button-container"> -->
-        <!-- <button><a href="loginsign.html">Calculate Building Emission</a></button> -->
-        <!-- <button id="B_info">Calculate Building Emission</button>
-        <button><a href="loginsign.html" >Calculate Household Emission</a></button>
-    </div>
-    
-    <script> -->
-
-  
-<!-- const params = new URLSearchParams(window.location.search);
-        const name = params.get('username'); // Use 'name' consistently
-        const header = document.getElementById('header');
-        if (name) {
-            header.innerText = `Welcome ${name}`;
-            // Redirect with 'name'
-        } else {
-            header.innerText = 'Welcome Guest';
-        }
-
-
-        B_info=document.getElementById('B_info');
-        //click on b_info
-        B_info.addEventListener("click",()=>{
-         window.location.href = `B_info.html?name=${encodeURIComponent(name)}`;
-    })
-
-    //click on user
-     user_btn=document.getElementById('user-btn');
-     user_btn.addEventListener("click",()=>{
-        window.location.href = `userdata.html?name=${encodeURIComponent(name)}`;
-     })
-    </script>
-    
-    
-</body>
-
-</html> -->

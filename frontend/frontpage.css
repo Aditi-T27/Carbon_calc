@@ -1,146 +1,85 @@
-* {
+*{
     background: rgb(12, 12, 12);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    color: white;
-}
-
-.container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    background: rgb(22, 22, 22);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    max-width: 1200px;
-    width: 80%;
-    margin-top: 20px;
-    overflow: hidden;
-}
-
-.image-container {
-    flex: 1;
-    background: url('calci2.gif') center top/cover no-repeat; /* Align image more to the top */
-    height: auto;
-    min-height: 460px;
-    padding-top: 30px; /* Reduce space at the top */
-    border-radius: 5px;
-}
-
-.content {
-    flex: 2;
-    padding: 20px 40px;
 }
 
 #header{
     color: rgb(21, 122, 21);
     font-size: 25px;
-    font-weight: 600;
-    font-family: 'Figtree', sans-serif;
+    font-weight: 800;
     display:inline ;
-    position: absolute; /* Use absolute positioning */
-    top: 20px; /* Distance from the top of the page */
-    left: 10px; /* Distance from the left of the page */
-    margin-left: 20px;
 }
-
-#user {
-    position: absolute; /* Positioning the container */
-    top: 10px;
-    right: 10px;
+#user{
+    display:inline;
+    float: inline-end;
 }
-
-#user-btn {
+#user-btn{
     background-color: transparent;
     font-weight: bolder;
-    font-size: 20px;
-    margin-right: 20px;
-    border: 2px solid rgb(21, 122, 21);
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Space between the icon and text */
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 15px;
+    border:2px solid rgb(21, 122, 21);
 }
-
-#user-btn:hover {
-    background-color: none;
+#user-btn:hover{
+    background-color:rgb(21, 122, 21);
+    cursor: pointer;
     color: white;
 }
-
-#user-btn i {
-    font-size: 18px; /* Adjust icon size */
-}
-
-h2 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
+h2{
     color: rgb(21, 122, 21);
     text-align: center;
     font-size: 50px;
     font-weight: 800;
-    padding-top: 10px;
-    transform: translateY(10px);
+    padding-top: 50px;
+    font-style: italic;
+    transform: translateY(10px); 
     transition: opacity 1s ease-in-out, transform 2s ease-in-out;
-    animation: fadeInUp 1s ease-out 0.5s forwards;
+    animation: fadeInUp 1s ease-out 0.5s forwards; 
 }
 
-p {
+p{
     color: rgb(127, 125, 122);
     text-align: justify;
-    padding-top: 20px;
+    padding: 60px;
+    margin-top: -80px;
     font-weight: 600;
     font-size: 18px;
-    line-height: 1.8;
 }
 
 button {
-    background: rgb(26, 103, 26);
-    color: white;
+    background: rgb(26, 103, 26); 
+    color: white; 
     border-radius: 10px;
     border: none;
-    margin-top: 20px;
-    padding: 15px 20px;
+    padding: 15px;
+    align-items:  center;
     text-align: center;
-    font-size: 18px;
-    font-weight: 800;
-    cursor: pointer;
     transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-button:hover, #B_info:hover{
-    background: rgb(14, 57, 14);
-    color: rgb(131, 130, 130);
+button:hover {
+    background: rgb(14, 57, 14); 
+    color: rgb(62, 63, 67); 
+}
+
+button:hover a{
+    color: rgb(131, 130, 130); 
+}
+
+.button-container{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 30px; 
+    margin-top: -20px;
 }
 
 button a {
-    text-decoration: none;
+    text-decoration: none; 
     color: white;
-    font-weight: bold;
-    background: none;
+    background: none; 
+    font-size: 18px; 
+    font-weight: 800;
 }
-
-button:hover a {
-    color: rgb(131, 130, 130);
-}
-
-.button-container {
-    display: flex;
-    gap: 15px; /* Space between buttons */
-    justify-content: center; /* Align buttons in the center */
-}
-
 /* New CSS since no anchor tag used */
 #B_info {
     background: rgb(26, 103, 26); 
@@ -149,21 +88,20 @@ button:hover a {
     padding: 15px;
     align-items:  center;
     text-align: center;
-    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    text-decoration: none; 
-    color: white; 
-    font-size: 18px; 
-    font-weight: 800;
+     transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+     text-decoration: none; 
+     color: white; 
+     font-size: 18px; 
+     font-weight: 800;
 }
 
 @keyframes fadeInUp {
     0% {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-20px); /* Starts offscreen */
     }
-
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0); /* Ends at the normal position */
     }
 }
